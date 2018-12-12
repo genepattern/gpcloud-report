@@ -35,11 +35,14 @@ report_period['Report Period'] = ''
 report_period['Start'] = past_date
 report_period['End'] = current_date
 
-## Users
+# Total users
 total_users = OrderedDict()
-total_users['Total Users'] = ''
-total_users['Total'] = input['TotalUsersCount']
-total_users['Returning Users'] = input['ReturningUsersCount']
+total_users['Total Users'] = input['TotalUsersCount']
+
+## Weekly Users
+weekly_users = OrderedDict()
+weekly_users['New Users'] = input['NewUserRegistrations']
+weekly_users['Returning Users'] = input['ReturningUsersCount']
 
 ## New Users
 new_users = OrderedDict()
@@ -133,7 +136,7 @@ def dict_to_list(dict_var):
 
 
 # Merge list names
-names_list = [report_period, total_users, new_users, modules_run, total_jobs, jobs_run_int_ext, user_jobs_run,  jobs_run_dom]
+names_list = [report_period, total_users, weekly_users, new_users, modules_run, total_jobs, jobs_run_int_ext, user_jobs_run,  jobs_run_dom]
 # Convert all dict to lists 
 new_list = []
 for name in names_list:
@@ -141,7 +144,7 @@ for name in names_list:
 new_list.append(module_error_count)
 
 # Create list of readable titles 
-titles_list = ['Report Period', 'User login statistics, this week', 'New Users, this week', 'Modules run this week, by number', 'Total Jobs Run', 'Jobs run this week, internal vs. external', 'Jobs run this week, by User',  'Jobs run this week by domain', 'Module error count this week, by count']
+titles_list = ['Report Period', 'Total Users', 'User login statistics, this week', 'New Users, this week', 'Modules run this week, by number', 'Total Jobs Run (date_completed used for whole report)', 'Jobs run this week, internal vs. external', 'Jobs run this week, by User',  'Jobs run this week by domain', 'Module error count this week, by count']
 
 # Convert list to styled html table function
 def list_to_htmltable(dictObj):
@@ -176,12 +179,12 @@ report_html.append(
     </head>
     <div class="row">
     <div class="column">''')
-for x in new_list[:4]:
+for x in new_list[:5]:
     list_to_htmltable(x) 
 
 report_html.append('</div><div class="column">') 
 
-for x in new_list[4:]:
+for x in new_list[5:]:
     list_to_htmltable(x)
 
 report_html.append('</div></div>') 
