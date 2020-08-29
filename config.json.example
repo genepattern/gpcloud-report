@@ -1,0 +1,14 @@
+{
+    "gp":{
+        "gp-login":"gp-password"
+    },
+    "smtp":{
+        "smtp-address":"smtp-port"
+    },
+    "serverLogin":{
+        "server-login":"server-key"
+    },
+    "serverSendmail":{
+        "send-from":["send-to"]
+    }
+}

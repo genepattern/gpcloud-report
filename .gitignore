@@ -1,2 +1,6 @@
-gpcloud_report.py
-*.json
+gp_stats_tmp/*
+config.json
+.vscode*
+awsses_gpcloud_report.py
+*.ipynb
+gpcloud_report-old.py
