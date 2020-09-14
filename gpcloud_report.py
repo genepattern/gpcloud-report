@@ -199,7 +199,7 @@ def dict_to_list(dict_var):
 
 # Merge list names
 # names_list = [report_period, total_users, weekly_users, new_users, modules_run, total_jobs, jobs_run_int_ext, user_jobs_run,  jobs_run_dom]
-names_list = [report_period, total_users, weekly_users, new_users, total_jobs]
+names_list = [report_period, total_users, weekly_users, new_users, total_jobs, jobs_run_int_ext]
 
 # Convert all dict to lists 
 new_list = []
