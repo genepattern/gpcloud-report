@@ -20,11 +20,11 @@ start_time = time.monotonic()
 # Import local config file (config.json)
 import json
 
-# with open('/home/ec2-user/gpcloud-report/config.json') as json_data_file:
-#     data = json.load(json_data_file)
+with open('/home/ec2-user/gpcloud-report/config.json') as json_data_file:
+     data = json.load(json_data_file)
 
-with open('config.json') as json_data_file:
-    data = json.load(json_data_file)
+#with open('config.json') as json_data_file:
+#    data = json.load(json_data_file)
 
 for key,val in data.items():
     if key == "gp":
@@ -267,7 +267,7 @@ import smtplib
 html = "<h2>GP %s Server Report (%s), <br>week ending %s</h2><br>%s" % (server_base,full_url,current_date,string)
 message = MIMEMultipart(
     "alternative", None, [MIMEText(html,'html')])
-message['Subject'] = 'GP %s Server (%s) User Statistics: %s to %s' % (server_base,full_url,past_date,current_date)
+message['Subject'] = 'GP %s Server Usage Statistics: %s to %s' % (server_base,past_date,current_date)
 
 # Define server and login information
 smtp_server = smtplib.SMTP('%s' % (smtp_address),smtp_port)

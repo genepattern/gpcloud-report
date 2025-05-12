@@ -1,1 +1,2 @@
-30 21 * * 7 python3 /etc/cron.weekly/gpcloud_report.py
+#30 21 * * 7 python3 /etc/cron.weekly/gpcloud_report.py
+0 17 * * 0 /home/ec2-user/gpcloud-report/gpcloud-report.sh
