@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import json
 
 # Order Dicts
 from collections import OrderedDict
@@ -13,10 +14,14 @@ past_date = "%s" % (datetime.date.today() - timedelta(days=7))
 import requests
 from requests.auth import HTTPBasicAuth
 server_base = "Cloud"
+server_base = "Beta"
 URL = 'http://%s.genepattern.org' % server_base.lower()
 full_url = '%s:80/gp/rest/v1/usagestats/user_summary/%s/%s' %(URL, past_date, current_date)
-r = requests.get(full_url, auth=HTTPBasicAuth('', '')) ## ADD CREDENTIALS
+r = requests.get(full_url, auth=HTTPBasicAuth('ted', 'qw')) ## ADD CREDENTIALS
 input = r.json()
+file2 = open(r"MyFile2.json","w+") 
+file2.write(json.dumps(input))
+file2.close
 
 # Write file to temp folder
 g = open('gp_stats_tmp/%s_%s.json' %(past_date,current_date), "w")
@@ -197,6 +202,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
 
+print(report_html)
+
 html = "<h2>GP %s Server Report (%s), <br>week ending %s</h2><br>%s" % (server_base,full_url,current_date,string)
 message = MIMEMultipart(
     "alternative", None, [MIMEText(html,'html')])
@@ -208,7 +215,7 @@ smtp_server.ehlo()
 smtp_server.starttls()
 smtp_server.login('', '') ## ADD SERVER LOGIN & PASS
 # smtp_server.sendmail('forrest.kim@gmail.com', ['f1kim@ucsd.edu', 'gp-dev@broadinstitute.org'], message.as_string())
-smtp_server.sendmail('forrest.kim@gmail.com', ['f1kim@ucsd.edu'], message.as_string())
+smtp_server.sendmail('jliefeld@cloud.ucsd.edu', ['jliefeld@ucsd.edu'], message.as_string())
 smtp_server.quit()
 
 # Validate the success of the command

@@ -49,6 +49,7 @@ for key,val in data.items():
 import requests
 from requests.auth import HTTPBasicAuth
 server_base = "Cloud" ## CHANGE THE BASE TO MATCH API
+#server_base = "beta"
 URL = 'http://%s.genepattern.org' % server_base.lower()
 full_url = '%s:80/gp/rest/v1/usagestats/user_summary/%s/%s' %(URL, past_date, current_date)
 
@@ -80,6 +81,11 @@ total_users['Total Users'] = input['TotalUsersCount']
 weekly_users = {}
 weekly_users['New Users'] = input['NewUserRegistrations']
 weekly_users['Returning Users'] = input['ReturningUsersCount']
+weekly_users['New guest registrations'] = input.get('NewGuestRegistrations', 'N/A')
+weekly_users['Newly registered guests with 1+ jobs'] = input.get('NewGuestsWithJobs', 'N/A')
+weekly_users['Newly registered reg users with 1+ jobs'] = input.get('NewUsersWithJobs', 'N/A')
+
+
 
 ## New Users
 new_users = {}
